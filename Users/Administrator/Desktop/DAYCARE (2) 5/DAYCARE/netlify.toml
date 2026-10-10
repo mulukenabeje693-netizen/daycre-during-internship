@@ -1,0 +1,30 @@
+[build]
+  # Run from repo root so scripts/build.js can access both frontend/ and backend/
+  base    = ""
+  command = "node scripts/build.js"
+  publish = "dist"
+
+# SPA fallback — all routes serve index.html so React Router handles navigation
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# REQUIRED — Set this in Netlify UI:
+#   Site → Site configuration → Environment variables
+#
+#   Key:   VITE_API_BASE_URL
+#   Value: https://<your-render-service-name>.onrender.com
+#
+# Without this env var, all API calls fall back to relative /api which 404s
+# on Netlify's static hosting and causes the "Something went wrong" crash.
+# ──────────────────────────────────────────────────────────────────────────────
