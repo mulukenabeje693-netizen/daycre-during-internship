@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+frontend/dist/
+backend/dist/
+
+# Environment variables (keep secrets out of git)
+backend/.env
+frontend/.env
+# Allow production env (no secrets, just the public backend URL)
+!frontend/.env.production
+
+# Uploads (user-generated content, not source code)
+backend/uploads/avatars/*
+backend/uploads/ids/*
+backend/uploads/messages/*
+# Keep the folder structure
+!backend/uploads/avatars/.gitkeep
+!backend/uploads/ids/.gitkeep
+!backend/uploads/messages/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.suo
+*.user
