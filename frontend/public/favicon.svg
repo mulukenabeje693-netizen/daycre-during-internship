@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- 3D gradient for main house/shield body -->
+    <radialGradient id="sphereGrad" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#7fffd4"/>
+      <stop offset="40%" stop-color="#20c997"/>
+      <stop offset="100%" stop-color="#0a7a5a"/>
+    </radialGradient>
+
+    <!-- Roof gradient -->
+    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#48e5b0"/>
+      <stop offset="100%" stop-color="#0d8c6a"/>
+    </linearGradient>
+
+    <!-- Door gradient -->
+    <linearGradient id="doorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff9f7f"/>
+      <stop offset="100%" stop-color="#e05a2b"/>
+    </linearGradient>
+
+    <!-- Window gradient -->
+    <linearGradient id="winGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8f8ff"/>
+      <stop offset="100%" stop-color="#7dd8f0"/>
+    </linearGradient>
+
+    <!-- Star gradient -->
+    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+
+    <!-- Ground gradient -->
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0a5e44" flood-opacity="0.45"/>
+    </filter>
+
+    <!-- Glow filter for sparkles -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── Background circle ── -->
+  <circle cx="32" cy="32" r="30" fill="#0f2027" opacity="0.15"/>
+  <circle cx="32" cy="32" r="29" fill="url(#sphereGrad)" filter="url(#shadow)"/>
+
+  <!-- Subtle 3D sheen highlight -->
+  <ellipse cx="26" cy="20" rx="12" ry="7" fill="white" opacity="0.18"/>
+
+  <!-- ── Ground / grass strip ── -->
+  <rect x="10" y="44" width="44" height="8" rx="4" fill="url(#groundGrad)" opacity="0.9"/>
+
+  <!-- ── House body ── -->
+  <rect x="18" y="30" width="28" height="16" rx="2" fill="#ffffff" opacity="0.92" filter="url(#shadow)"/>
+  <!-- Side face (3D depth illusion) -->
+  <polygon points="46,30 50,26 50,42 46,46" fill="#c8f5e8" opacity="0.7"/>
+
+  <!-- ── Roof ── -->
+  <polygon points="15,30 32,14 49,30" fill="url(#roofGrad)" filter="url(#shadow)"/>
+  <!-- Roof side face -->
+  <polygon points="49,30 53,26 36,10 32,14" fill="#0d8c6a" opacity="0.75"/>
+  <!-- Roof ridge highlight -->
+  <line x1="32" y1="14" x2="49" y2="30" stroke="white" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- ── Door ── -->
+  <rect x="27" y="36" width="10" height="10" rx="2" fill="url(#doorGrad)"/>
+  <!-- Door knob -->
+  <circle cx="35.5" cy="41" r="1" fill="#ffe066"/>
+  <!-- Door arch top -->
+  <ellipse cx="32" cy="36" rx="5" ry="2.5" fill="url(#doorGrad)" opacity="0.9"/>
+
+  <!-- ── Left window ── -->
+  <rect x="19" y="33" width="7" height="6" rx="1.5" fill="url(#winGrad)" opacity="0.95"/>
+  <!-- Window cross bars -->
+  <line x1="22.5" y1="33" x2="22.5" y2="39" stroke="white" stroke-width="0.7" opacity="0.7"/>
+  <line x1="19" y1="36" x2="26" y2="36" stroke="white" stroke-width="0.7" opacity="0.7"/>
+
+  <!-- ── Right window ── -->
+  <rect x="38" y="33" width="7" height="6" rx="1.5" fill="url(#winGrad)" opacity="0.95"/>
+  <line x1="41.5" y1="33" x2="41.5" y2="39" stroke="white" stroke-width="0.7" opacity="0.7"/>
+  <line x1="38" y1="36" x2="45" y2="36" stroke="white" stroke-width="0.7" opacity="0.7"/>
+
+  <!-- ── Chimney ── -->
+  <rect x="38" y="17" width="5" height="8" rx="1" fill="#0d8c6a"/>
+  <rect x="37.5" y="16" width="6" height="2.5" rx="1" fill="#48e5b0"/>
+
+  <!-- ── Star on roof peak ── -->
+  <g filter="url(#glow)">
+    <polygon points="32,8 33.2,11.6 37,11.6 34,13.8 35.2,17.4 32,15.2 28.8,17.4 30,13.8 27,11.6 30.8,11.6"
+      fill="url(#starGrad)">
+      <animateTransform attributeName="transform" type="rotate"
+        from="0 32 12.7" to="360 32 12.7"
+        dur="6s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+
+  <!-- ── Sparkle dots (floating children motif) ── -->
+  <!-- Sparkle 1 -->
+  <circle cx="13" cy="22" r="2" fill="#ffe066" opacity="0.9" filter="url(#glow)">
+    <animate attributeName="cy" values="22;18;22" dur="2.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2.4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Sparkle 2 -->
+  <circle cx="51" cy="18" r="1.5" fill="#ff9f7f" opacity="0.85" filter="url(#glow)">
+    <animate attributeName="cy" values="18;14;18" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.85;0.2;0.85" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Sparkle 3 -->
+  <circle cx="56" cy="34" r="1.8" fill="#7fffd4" opacity="0.8" filter="url(#glow)">
+    <animate attributeName="cy" values="34;30;34" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0.25;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Sparkle 4 -->
+  <circle cx="8" cy="38" r="1.4" fill="#c084fc" opacity="0.75" filter="url(#glow)">
+    <animate attributeName="cy" values="38;34;38" dur="2.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.75;0.2;0.75" dur="2.8s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ── Tiny heart above door (love/care symbol) ── -->
+  <g transform="translate(32,27) scale(0.55)">
+    <path d="M0,-3 C0,-7 -6,-7 -6,-3 C-6,0 0,5 0,5 C0,5 6,0 6,-3 C6,-7 0,-7 0,-3Z" fill="#ff6b9d" opacity="0.9">
+      <animate attributeName="transform" values="scale(1);scale(1.3);scale(1)" dur="1.4s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- ── Outer ring pulse (premium glow border) ── -->
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#20c997" stroke-width="1.5" opacity="0.0">
+    <animate attributeName="r" values="28;32;28" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0;0.6" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-width" values="2;0.5;2" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

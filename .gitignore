@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+**/dist/
+frontend/dist/
+backend/dist/
+
+# Environment variables (keep secrets and local configuration out of git)
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+
+# Uploads (user-generated content, not source code)
+backend/uploads/avatars/*
+backend/uploads/ids/*
+backend/uploads/messages/*
+# Keep the folder structure
+!backend/uploads/avatars/.gitkeep
+!backend/uploads/ids/.gitkeep
+!backend/uploads/messages/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test output and transient caches
+coverage/
+**/coverage/
+.cache/
+**/.cache/
+.vite/
+**/.vite/
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.suo
+*.user

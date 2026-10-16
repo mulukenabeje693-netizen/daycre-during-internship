@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Sign-In Callback</title>
+</head>
+<body>
+<script>
+(function() {
+  function parseHash(hash) {
+    const params = {};
+    hash.replace(/^#/, '').split('&').forEach(pair => {
+      if (!pair) return;
+      const [key, value] = pair.split('=');
+      params[decodeURIComponent(key)] = decodeURIComponent(value || '');
+    });
+    return params;
+  }
+
+  // Google implicit flow for OpenID Connect returns tokens in the URL hash
+  const params = parseHash(window.location.hash);
+  const message = {
+    source: 'google-auth-callback',
+    idToken: params.id_token || null,
+    error: params.error || null
+  };
+
+  if (window.opener && !window.opener.closed) {
+    window.opener.postMessage(message, '*');
+  } else {
+    document.body.innerHTML = 'Authentication failed or window lost connection. Please try again.';
+    return;
+  }
+
+  document.body.innerHTML = '<p style="font-family:sans-serif;padding:20px;text-align:center;">Completing Google sign-in… You may now close this window.</p>';
+})();
+</script>
+</body>
+</html>
